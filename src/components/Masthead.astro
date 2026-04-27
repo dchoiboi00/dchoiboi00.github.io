@@ -1,0 +1,97 @@
+---
+// src/components/Masthead.astro
+interface Props {
+  backTo?: { href: string; label: string };
+}
+
+const { backTo } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<header class="masthead">
+  <a href="/" class="masthead-identity">
+    <img src="/photo.jpg" alt="Daniel Choi" class="masthead-photo" />
+    <div class="masthead-text">
+      <span class="masthead-name">Daniel Choi</span>
+      <span class="masthead-role">Engineer · Los Angeles</span>
+    </div>
+  </a>
+
+  <nav class="masthead-nav">
+    {backTo ? (
+      <>
+        <a href={backTo.href}>← {backTo.label}</a>
+        <span class="dot">·</span>
+        <a href="/work">WORK</a>
+      </>
+    ) : (
+      <>
+        <a href="/work" class={currentPath.startsWith('/work') ? 'active' : ''}>WORK</a>
+        <span class="dot">·</span>
+        <a href="/writing" class={currentPath.startsWith('/writing') ? 'active' : ''}>WRITING</a>
+        <span class="dot">·</span>
+        <a href="/about" class={currentPath === '/about' ? 'active' : ''}>ABOUT</a>
+      </>
+    )}
+  </nav>
+</header>
+
+<hr class="rule" style="margin-bottom: 36px;" />
+
+<style>
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0 14px;
+  }
+  .masthead-identity {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    text-decoration: none;
+  }
+  .masthead-photo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #c9b89a;
+  }
+  .masthead-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .masthead-name {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+  .masthead-role {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--text-meta);
+    line-height: 1.2;
+  }
+  .masthead-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--text-meta);
+  }
+  .masthead-nav a { color: var(--text-meta); }
+  .masthead-nav a:hover, .masthead-nav a.active { color: var(--text-primary); }
+  .dot { color: var(--rule); }
+
+  @media (max-width: 480px) {
+    .masthead-role { display: none; }
+    .masthead-nav { font-size: 9px; letter-spacing: 1.2px; }
+  }
+</style>
