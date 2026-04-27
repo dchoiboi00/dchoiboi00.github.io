@@ -16,7 +16,7 @@
   --serif: Georgia, 'Times New Roman', serif;
   --sans:  -apple-system, 'Inter', system-ui, sans-serif;
 
-  --col-width: 640px;
+  --col-width: 960px;
   --col-pad: 40px;
 }
 
@@ -95,6 +95,9 @@ a:hover { color: var(--accent); }
   color: var(--text-muted);
 }
 .prose blockquote strong { color: var(--text-primary); }
+
+/* Keep prose at a readable measure even when the column is wider */
+.prose { max-width: 680px; }
 
 /* ── Responsive ── */
 @media (max-width: 680px) {

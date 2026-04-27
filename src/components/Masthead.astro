@@ -79,19 +79,22 @@ const currentPath = Astro.url.pathname;
   .masthead-nav {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 18px;
     font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 1.8px;
+    font-size: 13px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--text-meta);
   }
-  .masthead-nav a { color: var(--text-meta); }
+  .masthead-nav a {
+    color: var(--text-meta);
+    padding: 8px 4px;
+  }
   .masthead-nav a:hover, .masthead-nav a.active { color: var(--text-primary); }
   .dot { color: var(--rule); }
 
   @media (max-width: 480px) {
     .masthead-role { display: none; }
-    .masthead-nav { font-size: 9px; letter-spacing: 1.2px; }
+    .masthead-nav { font-size: 11px; letter-spacing: 1.4px; gap: 12px; }
   }
 </style>
