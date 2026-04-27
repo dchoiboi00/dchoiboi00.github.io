@@ -1,0 +1,74 @@
+---
+// src/layouts/Post.astro
+import Base from './Base.astro';
+import Masthead from '../components/Masthead.astro';
+
+interface Props {
+  title: string;
+  dek?: string;
+  type: string;
+  date: Date;
+  readTime?: string;
+}
+
+const { title, dek, type, date, readTime } = Astro.props;
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }).toUpperCase();
+
+const metaParts = [type, formatDate(date), readTime].filter(Boolean).join(' · ');
+---
+
+<Base title={title} description={dek}>
+  <div class="col">
+    <Masthead backTo={{ href: '/writing', label: 'WRITING' }} />
+
+    <article>
+      <p class="meta post-meta">{metaParts}</p>
+      <h1 class="post-title">{title}</h1>
+      {dek && <p class="post-dek">{dek}</p>}
+
+      <div class="prose">
+        <slot />
+      </div>
+
+      <footer class="post-footer">
+        <hr class="rule" style="margin-bottom: 20px;" />
+        <a href="/writing" class="back-link">← All writing</a>
+      </footer>
+    </article>
+  </div>
+</Base>
+
+<style>
+  .post-meta { color: var(--accent); margin-bottom: 14px; }
+  .post-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.18;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+  .post-dek {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 36px;
+  }
+  .post-footer { margin-top: 48px; }
+  .back-link {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-meta);
+    letter-spacing: 0.5px;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  @media (max-width: 480px) {
+    .post-title { font-size: 24px; }
+    .post-dek { font-size: 15px; }
+  }
+</style>
