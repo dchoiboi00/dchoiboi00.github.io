@@ -1,0 +1,103 @@
+/* src/styles/global.css */
+
+/* ── Design tokens ── */
+:root {
+  --bg:           #f7f4ee;
+  --text-primary: #1a1a1a;
+  --text-secondary: #3d3a35;
+  --text-muted:   #5d574e;
+  --text-meta:    #7a7368;
+  --accent:       #8b3a2f;
+  --rule:         #d8d2c2;
+  --callout-bg:   #f1ebdc;
+  --code-bg:      #1f1d1a;
+  --code-text:    #e8e3d6;
+
+  --serif: Georgia, 'Times New Roman', serif;
+  --sans:  -apple-system, 'Inter', system-ui, sans-serif;
+
+  --col-width: 640px;
+  --col-pad: 40px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent); }
+
+/* ── Column wrapper ── */
+.col {
+  max-width: var(--col-width);
+  margin: 0 auto;
+  padding: 48px var(--col-pad) 72px;
+}
+
+/* ── Hairline rule ── */
+.rule { border: none; border-top: 1px solid var(--rule); }
+
+/* ── Metadata strip ── */
+.meta {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-meta);
+}
+
+/* ── Prose (used inside Post layout) ── */
+.prose {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.prose p { margin-bottom: 18px; }
+.prose h3 {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 32px 0 12px;
+}
+.prose em { color: var(--accent); font-style: italic; }
+.prose pre {
+  background: var(--code-bg);
+  color: var(--code-text);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  line-height: 1.55;
+  padding: 14px 16px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 0 0 24px;
+}
+.prose code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875em; }
+.prose pre code { font-size: inherit; }
+.prose blockquote {
+  border-left: 3px solid var(--accent);
+  background: var(--callout-bg);
+  padding: 4px 16px;
+  margin: 0 0 24px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.prose blockquote strong { color: var(--text-primary); }
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  :root { --col-pad: 20px; }
+  .prose { font-size: 15px; }
+}
