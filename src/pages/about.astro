@@ -1,0 +1,119 @@
+---
+// src/pages/about.astro
+import Base from '../layouts/Base.astro';
+import Masthead from '../components/Masthead.astro';
+---
+
+<Base title="About">
+  <div class="col">
+    <Masthead />
+
+    <div class="about-header">
+      <img src="/photo.jpg" alt="Daniel Choi" class="about-photo" />
+      <div>
+        <h1 class="page-title">About</h1>
+        <p class="page-dek">Daniel Choi · Los Angeles · Full-stack engineer, currently at CatalogIt.</p>
+      </div>
+    </div>
+
+    <div class="prose about-body">
+      <p>
+        I'm an engineer focused on the messy work of turning AI into shipped products —
+        evals, prompt design, error handling, the parts that don't fit in demo videos.
+        Currently building LLM-powered features for collection management software at CatalogIt.
+      </p>
+      <p>
+        Outside of work, I play poker, build things on weekends, and read more than I write
+        (working on it).
+      </p>
+    </div>
+
+    <div class="strips">
+      <div class="strip">
+        <p class="meta strip-label">ELSEWHERE</p>
+        <div class="strip-links">
+          <a href="https://github.com/dchoiboi00">GitHub</a>
+          <span class="dot">·</span>
+          <a href="https://linkedin.com/in/danielyoochoi">LinkedIn</a>
+          <span class="dot">·</span>
+          <a href="mailto:dchoiboi00@gmail.com">Email</a>
+          <span class="dot">·</span>
+          <a href="/rss.xml">RSS</a>
+        </div>
+      </div>
+
+      <div class="strip">
+        <p class="meta strip-label">CURRENTLY</p>
+        <p class="strip-content">
+          Shipping AI features at CatalogIt. Building
+          <a href="https://github.com/dchoiboi00/schema-mapper">schema-mapper</a> (OSS).
+          Reading <em>Designing Data-Intensive Applications</em>.
+        </p>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .about-header {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .about-photo {
+    width: 92px;
+    height: 110px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #c9b89a;
+  }
+  .page-title {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .page-dek {
+    font-family: var(--serif);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .about-body {
+    margin-bottom: 36px;
+    font-size: 14px;
+  }
+  .strips { border-top: 1px solid var(--rule); }
+  .strip {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .strip-label { margin-bottom: 8px; }
+  .strip-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-primary);
+    flex-wrap: wrap;
+  }
+  .strip-links a:hover { color: var(--accent); }
+  .dot { color: var(--rule); }
+  .strip-content {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+  .strip-content a { color: var(--accent); }
+  .strip-content a:hover { text-decoration: underline; }
+
+  @media (max-width: 480px) {
+    .about-header { flex-direction: column; }
+    .about-photo { width: 72px; height: 86px; }
+  }
+</style>
