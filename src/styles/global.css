@@ -72,6 +72,12 @@ a:hover { color: var(--accent); }
   margin: 32px 0 12px;
 }
 .prose em { color: var(--accent); font-style: italic; }
+.prose img {
+  width: 100%;
+  height: auto;
+  margin: 0 0 28px;
+  border: 1px solid var(--rule);
+}
 .prose pre {
   background: var(--code-bg);
   color: var(--code-text);

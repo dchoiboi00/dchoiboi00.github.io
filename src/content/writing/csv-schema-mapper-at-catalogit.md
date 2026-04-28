@@ -6,6 +6,8 @@ type: CASE STUDY
 readTime: 6 min
 ---
 
+![CatalogIt CSV import mapping interface](/work/catalogit-mapper.jpg)
+
 Most CatalogIt customers arrive with a spreadsheet.
 Sometimes well-formatted, often not.
 Our job is to land that data into the right places in the system — and we wanted to do it without a 30-minute onboarding call.
