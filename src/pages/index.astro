@@ -16,8 +16,7 @@ const formatYear = (date: Date) => date.getFullYear().toString();
     <Masthead />
 
     <section class="hero">
-      <h1 class="hero-line">Engineer turning AI</h1>
-      <h1 class="hero-line hero-accent">into shipped products.</h1>
+      <h1>Engineer turning AI<br /><em>into shipped products.</em></h1>
     </section>
 
     <p class="intro">
@@ -27,57 +26,87 @@ const formatYear = (date: Date) => date.getFullYear().toString();
     </p>
 
     {posts.length > 0 && (
-      <section class="writing-list">
-        <p class="meta" style="margin-bottom: 14px;">RECENT WRITING</p>
-        <hr class="rule" />
-        {posts.map((post) => (
-          <a href={`/writing/${post.id}`} class="writing-row">
-            <span class="writing-title">{post.data.title}</span>
-            <span class="writing-year">{formatYear(post.data.date)}</span>
-          </a>
-        ))}
+      <section>
+        <div class="kicker">Recent Writing</div>
+        <div class="writing-list">
+          {posts.map((post) => (
+            <a href={`/writing/${post.id}`} class="writing-row">
+              <span class="writing-title">{post.data.title}</span>
+              <span class="writing-year">{formatYear(post.data.date)}</span>
+            </a>
+          ))}
+        </div>
+        <a href="/writing" class="more">All writing →</a>
       </section>
     )}
   </div>
 </Base>
 
 <style>
-  .hero { margin-bottom: 28px; }
-  .hero-line {
+  .hero { margin-bottom: 30px; }
+  .hero h1 {
     font-family: var(--serif);
-    font-size: 38px;
-    font-weight: 400;
-    line-height: 1.15;
-    color: var(--text-primary);
+    font-weight: 500;
+    font-size: clamp(40px, 6.4vw, 62px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    color: var(--ink);
   }
-  .hero-accent {
-    font-style: italic;
-    color: var(--accent);
-  }
+  .hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
   .intro {
-    font-family: var(--sans);
-    font-size: 15px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    max-width: 92%;
-    margin-bottom: 56px;
+    font-family: var(--serif-dek);
+    font-size: clamp(19px, 2.4vw, 23px);
+    line-height: 1.55;
+    color: #4a4033;
+    max-width: 60ch;
+    margin-bottom: 72px;
   }
-  .writing-list { margin-top: 8px; }
+  .kicker {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .kicker::before,
+  .kicker::after { content: ""; height: 1px; background: var(--rule); flex: 1; }
+  .writing-list { border-top: 1px solid var(--rule); margin-bottom: 16px; }
   .writing-row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 12px 0;
+    gap: 20px;
+    padding: 18px 0;
     border-bottom: 1px solid var(--rule);
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--text-secondary);
     text-decoration: none;
+    color: var(--ink);
+  }
+  .writing-title {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.35;
   }
   .writing-row:hover .writing-title { color: var(--accent); }
-  .writing-year { color: var(--text-meta); font-size: 11px; flex-shrink: 0; margin-left: 16px; }
-
-  @media (max-width: 480px) {
-    .hero-line { font-size: 28px; }
+  .writing-year {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--faint);
+    flex-shrink: 0;
   }
+  .more {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .more:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style>
