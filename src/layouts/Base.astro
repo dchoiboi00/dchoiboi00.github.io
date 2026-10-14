@@ -17,11 +17,24 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
     <title>{title} — Daniel Choi</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <slot />
+    <div class="col">
+      <footer class="site-footer">
+        <p class="colophon">Set in Lora &amp; Newsreader, printed on pixels the color of paper.</p>
+        <p style="margin-top:8px">&copy; 2026 Daniel Choi</p>
+      </footer>
+    </div>
   </body>
 </html>
