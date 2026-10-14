@@ -8,11 +8,13 @@ import Masthead from '../components/Masthead.astro';
   <div class="col">
     <Masthead />
 
-    <div class="about-header">
-      <img src="/photo.jpg" alt="Daniel Choi" class="about-photo" />
+    <div class="about-head">
+      <div class="photo-frame">
+        <img src="/photo.jpg" alt="Daniel Choi" class="about-photo" />
+      </div>
       <div>
-        <h1 class="page-title">About</h1>
-        <p class="page-dek">Daniel Choi · Los Angeles · Full-stack engineer, currently at CatalogIt.</p>
+        <h1>About</h1>
+        <p class="dek">Daniel Choi · Los Angeles · Full-stack engineer, currently at CatalogIt.</p>
       </div>
     </div>
 
@@ -30,88 +32,84 @@ import Masthead from '../components/Masthead.astro';
 
     <div class="strips">
       <div class="strip">
-        <p class="meta strip-label">ELSEWHERE</p>
+        <p class="strip-label">Elsewhere</p>
         <div class="strip-links">
-          <a href="https://github.com/dchoiboi00">GitHub</a>
-          <span class="dot">·</span>
-          <a href="https://linkedin.com/in/danielyoochoi">LinkedIn</a>
-          <span class="dot">·</span>
-          <a href="mailto:dchoiboi00@gmail.com">Email</a>
+          <a href="https://github.com/dchoiboi00">GitHub</a><span class="dot">·</span><a href="https://linkedin.com/in/danielyoochoi">LinkedIn</a><span class="dot">·</span><a href="mailto:dchoiboi00@gmail.com">Email</a>
         </div>
       </div>
 
       <div class="strip">
-        <p class="meta strip-label">CURRENTLY</p>
-        <p class="strip-content">
-          Shipping AI features at CatalogIt. Building
-          schema-mapper (OSS).
-          Reading <em>Designing Data-Intensive Applications</em>.
-        </p>
+        <p class="strip-label">Currently</p>
+        <p class="strip-content">Shipping AI features at CatalogIt.</p>
       </div>
     </div>
   </div>
 </Base>
 
 <style>
-  .about-header {
+  .about-head {
     display: flex;
-    gap: 20px;
+    gap: 28px;
     align-items: flex-start;
-    margin-bottom: 28px;
+    margin-bottom: 44px;
+  }
+  .photo-frame {
+    width: 120px;
+    flex-shrink: 0;
+    border: 1px solid var(--rule);
+    padding: 6px;
+    background: #fffdf6;
   }
   .about-photo {
-    width: 92px;
-    height: 110px;
+    width: 100%;
+    aspect-ratio: 3 / 3.6;
     object-fit: cover;
-    flex-shrink: 0;
-    background: #c9b89a;
+    display: block;
+    background: #e4d8bc;
   }
-  .page-title {
+  .about-head h1 {
     font-family: var(--serif);
-    font-size: 26px;
-    font-weight: 400;
-    color: var(--text-primary);
-    margin-bottom: 4px;
+    font-weight: 500;
+    font-size: clamp(36px, 5.4vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 10px;
+    color: var(--ink);
   }
-  .page-dek {
-    font-family: var(--serif);
-    font-size: 13px;
+  .about-head .dek {
+    font-family: var(--serif-dek);
     font-style: italic;
-    color: var(--text-muted);
+    font-size: 19px;
     line-height: 1.5;
+    color: var(--muted);
   }
-  .about-body {
-    margin-bottom: 36px;
-    font-size: 14px;
+  .about-body { margin-bottom: 56px; }
+  .about-body p { margin-bottom: 1.4em; max-width: 66ch; }
+  .strips { border-top: 4px double var(--rule); margin-bottom: 16px; }
+  .strip { padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .strip-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
   }
-  .strips { border-top: 1px solid var(--rule); }
-  .strip {
-    padding: 16px 0;
+  .strip-links { font-size: 16px; }
+  .strip-links a {
+    color: var(--ink);
     border-bottom: 1px solid var(--rule);
   }
-  .strip-label { margin-bottom: 8px; }
-  .strip-links {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--text-primary);
-    flex-wrap: wrap;
-  }
-  .strip-links a:hover { color: var(--accent); }
-  .dot { color: var(--rule); }
+  .strip-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .strip-links .dot { color: var(--faint); margin: 0 10px; }
   .strip-content {
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.55;
+    font-size: 16px;
+    color: #4a4033;
+    line-height: 1.6;
+    max-width: 62ch;
   }
-  .strip-content a { color: var(--accent); }
-  .strip-content a:hover { text-decoration: underline; }
 
   @media (max-width: 480px) {
-    .about-header { flex-direction: column; }
-    .about-photo { width: 72px; height: 86px; }
+    .about-head { flex-direction: column; }
   }
 </style>
