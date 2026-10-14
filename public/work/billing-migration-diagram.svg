@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660" font-family="'Avenir Next','Segoe UI',Verdana,sans-serif">
+  <defs>
+    <pattern id="dots2" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="1.7" fill="#c9bda3" opacity="0.45"/>
+    </pattern>
+    
+  </defs>
+
+  <rect width="1200" height="660" fill="#faf6ee"/>
+  <rect x="24" y="24" width="1152" height="612" fill="none" stroke="#d8cfbc" stroke-width="1"/>
+
+  <ellipse cx="300" cy="310" rx="220" ry="150" fill="#e3ecf5" opacity="0.45"/>
+  <ellipse cx="850" cy="330" rx="240" ry="150" fill="#f5ead6" opacity="0.4"/>
+  <ellipse cx="600" cy="170" rx="200" ry="105" fill="#e4efe4" opacity="0.4"/>
+  <rect x="70" y="430" width="140" height="52" fill="url(#dots2)"/>
+  <rect x="1000" y="120" width="120" height="50" fill="url(#dots2)"/>
+
+  <text x="48" y="66" font-size="15" letter-spacing="3" fill="#8a7f68" font-weight="600">ZERO-DOWNTIME BILLING MIGRATION</text>
+  <text x="1152" y="66" text-anchor="end" font-size="14" font-style="italic" fill="#8a7f68" font-family="Georgia,'Times New Roman',serif">3,000 accounts &#183; $800K ARR</text>
+  <text x="1152" y="90" text-anchor="end" font-size="13" font-style="italic" fill="#8a7f68" font-family="Georgia,'Times New Roman',serif">zero downtime &#183; no revenue discrepancies</text>
+
+  <!-- winding path -->
+  <path d="M320,193 C360,193 360,323 381.4,314.7" fill="none" stroke="#8a7f68" stroke-width="2.5"/><polygon points="390.0,323.0 377.2,317.6 384.1,310.4" fill="#8a7f68"/>
+  <path d="M650,323 C690,323 690,193 711.4,201.3" fill="none" stroke="#8a7f68" stroke-width="2.5"/><polygon points="720.0,193.0 714.1,205.6 707.2,198.4" fill="#8a7f68"/>
+  <path d="M855,302 C855,365 862,405 871.7,427.1" fill="none" stroke="#8a7f68" stroke-width="2.5"/><polygon points="875.7,438.4 866.7,427.8 876.1,424.5" fill="#8a7f68"/>
+
+  <!-- PHASE A -->
+  <rect x="70" y="120" width="250" height="146" rx="10" fill="#ffffff" stroke="#d8cfbc"/>
+  <path d="M70,130 a10,10 0 0 1 10,-10 h230 a10,10 0 0 1 10,10 v26 h-250 z" fill="#2b3a55"/>
+  <text x="195" y="143" text-anchor="middle" font-size="12.5" letter-spacing="2" fill="#ffffff" font-weight="700">PHASE A</text>
+  <rect x="84" y="169" width="22" height="22" rx="6" fill="#7ba3c9"/>
+  <text x="95" y="184" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">A</text>
+  <text x="114" y="185" font-size="13" fill="#232b3e">old endpoint live</text>
+  <rect x="84" y="201" width="22" height="22" rx="6" fill="#7ba05b"/>
+  <text x="95" y="216" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">B</text>
+  <text x="114" y="217" font-size="13" fill="#232b3e">new: 200 and ignore</text>
+  <rect x="84" y="233" width="22" height="22" rx="6" fill="#d9a441"/>
+  <text x="95" y="248" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">C</text>
+  <text x="114" y="249" font-size="13" fill="#232b3e">monitor first</text>
+
+  <!-- PHASE B -->
+  <rect x="400" y="250" width="250" height="146" rx="10" fill="#ffffff" stroke="#d8cfbc"/>
+  <path d="M400,260 a10,10 0 0 1 10,-10 h230 a10,10 0 0 1 10,10 v26 h-250 z" fill="#a8752a"/>
+  <text x="525" y="273" text-anchor="middle" font-size="12.5" letter-spacing="2" fill="#ffffff" font-weight="700">PHASE B &#183; CUTOVER</text>
+  <rect x="414" y="299" width="22" height="22" rx="6" fill="#5b8a8a"/>
+  <text x="425" y="314" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">A</text>
+  <text x="444" y="315" font-size="13" fill="#232b3e">old returns 400</text>
+  <rect x="414" y="331" width="22" height="22" rx="6" fill="#d97f4a"/>
+  <text x="425" y="346" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">B</text>
+  <text x="444" y="347" font-size="13" fill="#232b3e">Stripe retries 3 days</text>
+  <rect x="414" y="363" width="22" height="22" rx="6" fill="#c97b9a"/>
+  <text x="425" y="378" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">C</text>
+  <text x="444" y="379" font-size="13" fill="#232b3e">rollback parachute</text>
+
+  <!-- BACKFILL -->
+  <rect x="730" y="120" width="250" height="182" rx="10" fill="#ffffff" stroke="#d8cfbc"/>
+  <path d="M730,130 a10,10 0 0 1 10,-10 h230 a10,10 0 0 1 10,10 v26 h-250 z" fill="#a34a3a"/>
+  <text x="855" y="143" text-anchor="middle" font-size="12.5" letter-spacing="2" fill="#ffffff" font-weight="700">BACKFILL &#183; 1,536</text>
+  <rect x="744" y="169" width="22" height="22" rx="6" fill="#7e6ba8"/>
+  <text x="755" y="184" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">A</text>
+  <text x="774" y="185" font-size="13" fill="#232b3e">1,468 scripted</text>
+  <rect x="744" y="201" width="22" height="22" rx="6" fill="#5b8a8a"/>
+  <text x="755" y="216" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">B</text>
+  <text x="774" y="217" font-size="13" fill="#232b3e">56 consolidated</text>
+  <rect x="744" y="233" width="22" height="22" rx="6" fill="#9a9a9a"/>
+  <text x="755" y="248" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">C</text>
+  <text x="774" y="249" font-size="13" fill="#232b3e">11 manual runbook</text>
+  <rect x="744" y="265" width="22" height="22" rx="6" fill="#7ba05b"/>
+  <text x="755" y="280" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">D</text>
+  <text x="774" y="281" font-size="13" fill="#232b3e">shared verifier</text>
+
+  <!-- ROLLOUT -->
+  <rect x="880" y="390" width="250" height="146" rx="10" fill="#ffffff" stroke="#d8cfbc"/>
+  <path d="M880,400 a10,10 0 0 1 10,-10 h230 a10,10 0 0 1 10,10 v26 h-250 z" fill="#2f4a3c"/>
+  <text x="1005" y="413" text-anchor="middle" font-size="12.5" letter-spacing="2" fill="#ffffff" font-weight="700">ROLLOUT</text>
+  <rect x="894" y="439" width="22" height="22" rx="6" fill="#7ba05b"/>
+  <text x="905" y="454" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">A</text>
+  <text x="924" y="455" font-size="13" fill="#232b3e">pilot, 10%, GA</text>
+  <rect x="894" y="471" width="22" height="22" rx="6" fill="#7ba3c9"/>
+  <text x="905" y="486" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">B</text>
+  <text x="924" y="487" font-size="13" fill="#232b3e">feature flags</text>
+  <rect x="894" y="503" width="22" height="22" rx="6" fill="#d9a441"/>
+  <text x="905" y="518" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">C</text>
+  <text x="924" y="519" font-size="13" fill="#232b3e">zero downtime</text>
+
+  <!-- safety net undercurrent -->
+  <path d="M24,592 Q150,570 300,592 T600,592 T900,592 T1176,592 L1176,636 L24,636 Z" fill="#dfe9dc" opacity="0.9"/>
+  <path d="M24,608 Q200,592 400,608 T800,608 T1176,608 L1176,636 L24,636 Z" fill="#d7e3f2" opacity="0.55"/>
+  <text x="600" y="606" text-anchor="middle" font-size="12" letter-spacing="2" fill="#3c4a3c" font-weight="700">ALWAYS-ON SAFETY NET</text>
+  <text x="600" y="626" text-anchor="middle" font-size="12.5" fill="#3c4a3c">idempotent webhooks &#183; Stripe is the source of truth &#183; self-healing</text>
+</svg>
