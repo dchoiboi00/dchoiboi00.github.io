@@ -82,12 +82,6 @@ a:hover { color: var(--accent); }
   text-align: center;
   letter-spacing: 0.04em;
 }
-.site-footer .colophon {
-  font-family: var(--serif-dek);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--muted);
-}
 
 /* ── Prose (post bodies) ── */
 .prose {
