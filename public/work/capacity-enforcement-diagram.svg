@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" font-family="'Avenir Next','Segoe UI',Verdana,sans-serif">
+  <defs>
+    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="1.7" fill="#c9bda3" opacity="0.45"/>
+    </pattern>
+    
+  </defs>
+
+  <rect width="1200" height="600" fill="#faf6ee"/>
+  <rect x="24" y="24" width="1152" height="552" fill="none" stroke="#d8cfbc" stroke-width="1"/>
+
+  <ellipse cx="230" cy="330" rx="210" ry="150" fill="#e3ecf5" opacity="0.5"/>
+  <ellipse cx="700" cy="330" rx="270" ry="140" fill="#f5ead6" opacity="0.45"/>
+  <ellipse cx="1030" cy="320" rx="165" ry="150" fill="#e4efe4" opacity="0.5"/>
+  <rect x="60" y="92" width="150" height="56" fill="url(#dots)"/>
+  <rect x="990" y="96" width="120" height="48" fill="url(#dots)"/>
+
+  <text x="48" y="66" font-size="15" letter-spacing="3" fill="#8a7f68" font-weight="600">ACCOUNT CAPACITY ENFORCEMENT</text>
+  
+  <!-- outcome callout -->
+  <rect x="884" y="88" width="268" height="74" rx="10" fill="#fffdf8" stroke="#d8cfbc"/>
+  <text x="904" y="114" font-size="11" letter-spacing="2" fill="#8a7f68" font-weight="700">OUTCOME</text>
+  <text x="904" y="136" font-size="13" fill="#232b3e">600 accounts over limits</text>
+  <text x="904" y="154" font-size="13" fill="#232b3e">15&#8211;20 upgrades day one &#183; +15% MRR</text>
+
+  <!-- daily scan card -->
+  <rect x="56" y="250" width="200" height="150" rx="10" fill="#ffffff" stroke="#d8cfbc"/>
+  <path d="M56,260 a10,10 0 0 1 10,-10 h180 a10,10 0 0 1 10,10 v26 h-200 z" fill="#2b3a55"/>
+  <text x="156" y="273" text-anchor="middle" font-size="12.5" letter-spacing="2" fill="#ffffff" font-weight="700">DAILY SCAN</text>
+  <rect x="70" y="299" width="22" height="22" rx="6" fill="#7ba3c9"/>
+  <text x="81" y="314" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">A</text>
+  <text x="100" y="315" font-size="13" fill="#232b3e">25,000 accounts</text>
+  <rect x="70" y="331" width="22" height="22" rx="6" fill="#7ba05b"/>
+  <text x="81" y="346" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">B</text>
+  <text x="100" y="347" font-size="13" fill="#232b3e">records &#183; users &#183; storage</text>
+  <rect x="70" y="363" width="22" height="22" rx="6" fill="#d9a441"/>
+  <text x="81" y="378" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">C</text>
+  <text x="100" y="379" font-size="13" fill="#232b3e">flags over-capacity</text>
+
+  <line x1="256" y1="325" x2="267" y2="325" stroke="#8a7f68" stroke-width="2"/><polygon points="280.0,325.0 267.0,330.0 267.0,320.0" fill="#8a7f68"/>
+
+  <!-- main timeline axis -->
+  <line x1="280" y1="325" x2="880" y2="325" stroke="#b9ac8e" stroke-width="2"/>
+  <g font-size="11" letter-spacing="1" fill="#8a7f68" font-weight="600">
+    <line x1="280" y1="319" x2="280" y2="331" stroke="#b9ac8e" stroke-width="2"/>
+    <text x="280" y="350" text-anchor="middle">DAY 0</text>
+    <line x1="480" y1="319" x2="480" y2="331" stroke="#b9ac8e" stroke-width="2"/>
+    <text x="480" y="350" text-anchor="middle">DAY 5</text>
+    <line x1="680" y1="319" x2="680" y2="331" stroke="#b9ac8e" stroke-width="2"/>
+    <text x="680" y="350" text-anchor="middle">DAY 10</text>
+    <line x1="880" y1="319" x2="880" y2="331" stroke="#b9ac8e" stroke-width="2"/>
+    <text x="880" y="350" text-anchor="middle">DAY 15</text>
+  </g>
+
+  <!-- upper track: in-app notices -->
+  <line x1="280" y1="215" x2="880" y2="215" stroke="#5b8a8a" stroke-width="1.5"/>
+  <text x="284" y="196" font-size="11" letter-spacing="1.5" fill="#3e6b6b" font-weight="700">IN-APP NOTICES <tspan font-weight="400" fill="#6b7a76">&#183; daily users</tspan></text>
+  <g fill="#5b8a8a" stroke="#ffffff" stroke-width="2">
+    <circle cx="560" cy="215" r="5.5"/>
+    <circle cx="700" cy="215" r="5.5"/>
+    <circle cx="840" cy="215" r="5.5"/>
+  </g>
+  <g font-size="11.5" fill="#3e4a48" text-anchor="middle">
+    <text x="560" y="196">session-start dialog</text>
+    <text x="700" y="196">in-app status chip</text>
+    <text x="840" y="196">final warning</text>
+  </g>
+
+  <!-- lower track: email drip -->
+  <line x1="280" y1="435" x2="880" y2="435" stroke="#c08a3e" stroke-width="1.5"/>
+  <text x="284" y="416" font-size="11" letter-spacing="1.5" fill="#8a6420" font-weight="700">EMAIL DRIP <tspan font-weight="400" fill="#7a6a45">&#183; all accounts</tspan></text>
+  <g fill="#c08a3e" stroke="#ffffff" stroke-width="2">
+    <circle cx="560" cy="435" r="5.5"/>
+    <circle cx="700" cy="435" r="5.5"/>
+    <circle cx="840" cy="435" r="5.5"/>
+  </g>
+  <g font-size="11.5" fill="#4a4234" text-anchor="middle">
+    <text x="560" y="459">owner email</text>
+    <text x="700" y="459">reminder</text>
+    <text x="840" y="459">last call &#183; timestamped</text>
+  </g>
+
+  <line x1="880" y1="325" x2="898.0" y2="325.0" stroke="#8a7f68" stroke-width="2"/><polygon points="910.0,325.0 897.0,330.0 897.0,320.0" fill="#8a7f68"/>
+
+  <!-- frozen panel -->
+  <rect x="920" y="250" width="200" height="150" rx="10" fill="#ffffff" stroke="#d8cfbc"/>
+  <path d="M920,260 a10,10 0 0 1 10,-10 h180 a10,10 0 0 1 10,10 v26 h-200 z" fill="#a34a3a"/>
+  <text x="1020" y="273" text-anchor="middle" font-size="12.5" letter-spacing="2" fill="#ffffff" font-weight="700">FROZEN &#183; DAY 15</text>
+  <rect x="934" y="299" width="22" height="22" rx="6" fill="#7e6ba8"/>
+  <text x="945" y="314" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">A</text>
+  <text x="964" y="315" font-size="13" fill="#232b3e">frozen_at set</text>
+  <rect x="934" y="331" width="22" height="22" rx="6" fill="#5b8a8a"/>
+  <text x="945" y="346" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">B</text>
+  <text x="964" y="347" font-size="13" fill="#232b3e">read-only banner</text>
+  <rect x="934" y="363" width="22" height="22" rx="6" fill="#9a9a9a"/>
+  <text x="945" y="378" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">C</text>
+  <text x="964" y="379" font-size="13" fill="#232b3e">roles untouched</text>
+
+  <line x1="1020" y1="400" x2="1020.0" y2="398.0" stroke="#8a7f68" stroke-width="2"/><polygon points="1020.0,410.0 1015.0,397.0 1025.0,397.0" fill="#8a7f68"/>
+
+  <!-- restored panel -->
+  <rect x="920" y="420" width="200" height="140" rx="10" fill="#ffffff" stroke="#d8cfbc"/>
+  <path d="M920,430 a10,10 0 0 1 10,-10 h180 a10,10 0 0 1 10,10 v26 h-200 z" fill="#2f4a3c"/>
+  <text x="1020" y="443" text-anchor="middle" font-size="12.5" letter-spacing="2" fill="#ffffff" font-weight="700">PAID &#183; RESTORED</text>
+  <rect x="934" y="469" width="22" height="22" rx="6" fill="#7ba05b"/>
+  <text x="945" y="484" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">A</text>
+  <text x="964" y="485" font-size="13" fill="#232b3e">customer pays</text>
+  <rect x="934" y="501" width="22" height="22" rx="6" fill="#7ba3c9"/>
+  <text x="945" y="516" text-anchor="middle" font-size="12" fill="#ffffff" font-weight="700">B</text>
+  <text x="964" y="517" font-size="13" fill="#232b3e">frozen_at cleared</text>
+  <text x="964" y="545" font-size="13" fill="#232b3e">banner lifts live</text>
+
+  <text x="600" y="566" text-anchor="middle" font-size="13.5" font-style="italic" fill="#8a7f68" font-family="Georgia,'Times New Roman',serif">warn in the channel they&#8217;ll see &#183; freeze automatically &#183; unfreeze on payment</text>
+</svg>
