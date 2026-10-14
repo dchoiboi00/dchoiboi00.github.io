@@ -9,92 +9,76 @@ const currentPath = Astro.url.pathname;
 ---
 
 <header class="masthead">
-  <a href="/" class="masthead-identity">
-    <img src="/photo.jpg" alt="Daniel Choi" class="masthead-photo" />
-    <div class="masthead-text">
-      <span class="masthead-name">Daniel Choi</span>
-      <span class="masthead-role">Engineer · Los Angeles</span>
-    </div>
-  </a>
-
+  {backTo && (
+    <a href={backTo.href} class="masthead-back">← {backTo.label}</a>
+  )}
+  <img src="/photo.jpg" alt="Daniel Choi" class="masthead-photo" />
+  <div class="masthead-name">Daniel Choi</div>
+  <div class="masthead-role">Software Engineer &nbsp;·&nbsp; Los Angeles</div>
   <nav class="masthead-nav">
-    {backTo ? (
-      <>
-        <a href={backTo.href}>← {backTo.label}</a>
-        <span class="dot">·</span>
-        <a href="/work">WORK</a>
-      </>
-    ) : (
-      <>
-        <a href="/work" class={currentPath.startsWith('/work') ? 'active' : ''}>WORK</a>
-        <span class="dot">·</span>
-        <a href="/writing" class={currentPath.startsWith('/writing') ? 'active' : ''}>WRITING</a>
-        <span class="dot">·</span>
-        <a href="/about" class={currentPath === '/about' ? 'active' : ''}>ABOUT</a>
-      </>
-    )}
+    <a href="/work" class={currentPath.startsWith('/work') ? 'active' : ''}>Work</a>
+    <a href="/writing" class={currentPath.startsWith('/writing') ? 'active' : ''}>Writing</a>
+    <a href="/about" class={currentPath === '/about' ? 'active' : ''}>About</a>
   </nav>
 </header>
 
-<hr class="rule" style="margin-bottom: 36px;" />
-
 <style>
   .masthead {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 0 14px;
+    text-align: center;
+    padding: 56px 0 44px;
+    border-bottom: 4px double var(--rule);
+    margin-bottom: 64px;
   }
-  .masthead-identity {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    text-decoration: none;
+  .masthead-back {
+    display: inline-block;
+    margin-bottom: 28px;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
   }
+  .masthead-back:hover { color: var(--accent); }
   .masthead-photo {
-    width: 44px;
-    height: 44px;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 20px;
     border-radius: 50%;
     object-fit: cover;
-    background: #c9b89a;
-  }
-  .masthead-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    border: 1px solid var(--rule);
+    background: #e4d8bc;
+    display: block;
   }
   .masthead-name {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.2;
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--ink);
   }
   .masthead-role {
-    font-family: var(--sans);
-    font-size: 11px;
-    color: var(--text-meta);
-    line-height: 1.2;
-  }
-  .masthead-nav {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    font-family: var(--sans);
+    margin-top: 10px;
     font-size: 13px;
-    letter-spacing: 2px;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: var(--text-meta);
+    color: var(--muted);
+    font-weight: 600;
   }
+  .masthead-nav { margin-top: 22px; font-size: 15px; }
   .masthead-nav a {
-    color: var(--text-meta);
-    padding: 8px 4px;
+    color: var(--ink);
+    text-decoration: none;
+    margin: 0 14px;
+    border-bottom: 1px solid transparent;
   }
-  .masthead-nav a:hover, .masthead-nav a.active { color: var(--text-primary); }
-  .dot { color: var(--rule); }
+  .masthead-nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .masthead-nav a.active { color: var(--accent); }
 
   @media (max-width: 480px) {
-    .masthead-role { display: none; }
-    .masthead-nav { font-size: 11px; letter-spacing: 1.4px; gap: 12px; }
+    .masthead { padding: 40px 0 32px; margin-bottom: 48px; }
+    .masthead-photo { width: 88px; height: 88px; }
+    .masthead-name { font-size: 34px; }
+    .masthead-role { font-size: 11px; letter-spacing: 0.22em; }
   }
 </style>
