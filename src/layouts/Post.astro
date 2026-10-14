@@ -13,18 +13,19 @@ interface Props {
 
 const { title, dek, type, date, readTime } = Astro.props;
 
+const titleCase = (s: string) => s.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 const formatDate = (d: Date) =>
-  d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }).toUpperCase();
+  d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 
-const metaParts = [type, formatDate(date), readTime].filter(Boolean).join(' · ');
+const metaParts = [titleCase(type), formatDate(date), readTime].filter(Boolean).join(' · ');
 ---
 
 <Base title={title} description={dek}>
   <div class="col">
-    <Masthead backTo={{ href: '/writing', label: 'WRITING' }} />
+    <Masthead backTo={{ href: '/writing', label: 'Writing' }} />
 
     <article>
-      <p class="meta post-meta">{metaParts}</p>
+      <p class="kicker">{metaParts}</p>
       <h1 class="post-title">{title}</h1>
       {dek && <p class="post-dek">{dek}</p>}
 
@@ -33,7 +34,6 @@ const metaParts = [type, formatDate(date), readTime].filter(Boolean).join(' · '
       </div>
 
       <footer class="post-footer">
-        <hr class="rule" style="margin-bottom: 20px;" />
         <a href="/writing" class="back-link">← All writing</a>
       </footer>
     </article>
@@ -41,34 +41,49 @@ const metaParts = [type, formatDate(date), readTime].filter(Boolean).join(' · '
 </Base>
 
 <style>
-  .post-meta { color: var(--accent); margin-bottom: 14px; }
+  .kicker {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+  .kicker::before,
+  .kicker::after { content: ""; height: 1px; background: var(--rule); flex: 1; }
   .post-title {
     font-family: var(--serif);
-    font-size: 32px;
     font-weight: 500;
-    line-height: 1.18;
-    color: var(--text-primary);
-    margin-bottom: 12px;
+    font-size: clamp(38px, 6vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    margin-bottom: 26px;
+    color: var(--ink);
   }
   .post-dek {
-    font-family: var(--serif);
-    font-size: 17px;
+    font-family: var(--serif-dek);
     font-style: italic;
-    color: var(--text-muted);
-    line-height: 1.4;
-    margin-bottom: 36px;
+    font-size: clamp(20px, 2.6vw, 25px);
+    line-height: 1.45;
+    color: #4a4033;
+    text-wrap: pretty;
+    margin-bottom: 44px;
   }
-  .post-footer { margin-top: 48px; }
+  .post-footer {
+    margin-top: 64px;
+    border-top: 4px double var(--rule);
+    padding-top: 24px;
+  }
   .back-link {
-    font-family: var(--sans);
-    font-size: 12px;
-    color: var(--text-meta);
-    letter-spacing: 0.5px;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
   }
-  .back-link:hover { color: var(--accent); }
-
-  @media (max-width: 480px) {
-    .post-title { font-size: 24px; }
-    .post-dek { font-size: 15px; }
-  }
+  .back-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 </style>
