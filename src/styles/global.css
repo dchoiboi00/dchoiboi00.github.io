@@ -1,35 +1,50 @@
-/* src/styles/global.css */
+/* src/styles/global.css — Direction A (Editorial serif) */
 
 /* ── Design tokens ── */
 :root {
-  --bg:           #f7f4ee;
-  --text-primary: #1a1a1a;
-  --text-secondary: #3d3a35;
-  --text-muted:   #5d574e;
-  --text-meta:    #7a7368;
-  --accent:       #8b3a2f;
-  --rule:         #d8d2c2;
-  --callout-bg:   #f1ebdc;
-  --code-bg:      #1f1d1a;
-  --code-text:    #e8e3d6;
+  --paper: #faf6ee;
+  --ink: #221a11;
+  --muted: #6f6350;
+  --faint: #a89a80;
+  --accent: #8c2f1b;
+  --rule: #ddd2ba;
 
-  --serif: Georgia, 'Times New Roman', serif;
-  --sans:  -apple-system, 'Inter', system-ui, sans-serif;
+  /* legacy aliases (older components) */
+  --bg: var(--paper);
+  --text-primary: var(--ink);
+  --text-secondary: #4a4033;
+  --text-muted: var(--muted);
+  --text-meta: var(--faint);
+  --callout-bg: #f1ebdc;
+  --code-bg: #1f1d1a;
+  --code-text: #e8e3d6;
 
-  --col-width: 960px;
-  --col-pad: 40px;
+  --serif: "Lora", Georgia, "Times New Roman", serif;
+  --serif-dek: "Newsreader", Georgia, serif;
+  --sans: "Source Sans 3", -apple-system, "Segoe UI", system-ui, sans-serif;
+
+  --col-width: 720px;
+  --col-pad: 28px;
 }
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { font-size: 16px; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 
 body {
-  background: var(--bg);
-  color: var(--text-primary);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+}
+
+/* faint paper grain */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
 }
 
 img { display: block; max-width: 100%; }
@@ -41,72 +56,106 @@ a:hover { color: var(--accent); }
 .col {
   max-width: var(--col-width);
   margin: 0 auto;
-  padding: 48px var(--col-pad) 72px;
+  padding: 0 var(--col-pad);
 }
 
 /* ── Hairline rule ── */
 .rule { border: none; border-top: 1px solid var(--rule); }
 
-/* ── Metadata strip ── */
+/* ── Kicker / metadata strip ── */
 .meta {
   font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--text-meta);
+  color: var(--accent);
 }
 
-/* ── Prose (used inside Post layout) ── */
+/* ── Site footer ── */
+.site-footer {
+  margin-top: 88px;
+  border-top: 4px double var(--rule);
+  padding: 28px 0 64px;
+  font-size: 13.5px;
+  color: var(--faint);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+.site-footer .colophon {
+  font-family: var(--serif-dek);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* ── Prose (post bodies) ── */
 .prose {
-  font-family: var(--serif);
-  font-size: 16px;
+  font-family: var(--sans);
+  font-size: 18px;
   line-height: 1.7;
   color: var(--text-secondary);
+  max-width: 680px;
 }
-.prose p { margin-bottom: 18px; }
+.prose p { margin-bottom: 1.5em; }
+.prose h2 {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin: 48px 0 16px;
+}
 .prose h3 {
   font-family: var(--serif);
-  font-size: 19px;
-  font-weight: 600;
+  font-size: 21px;
+  font-weight: 500;
   color: var(--text-primary);
-  margin: 32px 0 12px;
+  margin: 36px 0 12px;
 }
-.prose em { color: var(--accent); font-style: italic; }
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose a:hover { text-decoration-thickness: 2px; }
+.prose strong { color: var(--text-primary); }
+.prose em { font-family: var(--serif-dek); }
 .prose img {
   width: 100%;
   height: auto;
-  margin: 0 0 28px;
+  margin: 8px 0 36px;
   border: 1px solid var(--rule);
+  background: #fffdf6;
 }
 .prose pre {
   background: var(--code-bg);
   color: var(--code-text);
   font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.55;
-  padding: 14px 16px;
+  padding: 16px 18px;
   border-radius: 4px;
   overflow-x: auto;
-  margin: 0 0 24px;
+  margin: 0 0 28px;
 }
 .prose code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875em; }
 .prose pre code { font-size: inherit; }
 .prose blockquote {
   border-left: 3px solid var(--accent);
   background: var(--callout-bg);
-  padding: 4px 16px;
-  margin: 0 0 24px;
-  font-family: var(--sans);
-  font-size: 13px;
+  padding: 12px 20px;
+  margin: 0 0 28px;
+  font-size: 16px;
   color: var(--text-muted);
 }
-.prose blockquote strong { color: var(--text-primary); }
-
-/* Keep prose at a readable measure even when the column is wider */
-.prose { max-width: 680px; }
+.prose ul, .prose ol { margin: 0 0 1.5em 1.4em; }
+.prose li { margin-bottom: 0.5em; }
 
 /* ── Responsive ── */
 @media (max-width: 680px) {
   :root { --col-pad: 20px; }
-  .prose { font-size: 15px; }
+  body { font-size: 17px; }
+  .prose { font-size: 17px; }
 }
