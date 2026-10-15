@@ -3,6 +3,7 @@
 import Base from '../layouts/Base.astro';
 import Masthead from '../components/Masthead.astro';
 import { getCollection } from 'astro:content';
+import { keepHyphenatedWords } from '../lib/keep-hyphenated-words.mjs';
 
 const posts = (await getCollection('writing'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -21,10 +22,9 @@ const formatDate = (date: Date) =>
     </section>
 
     <p class="intro">
-      I'm a full-stack engineer at CatalogIt, which makes collection management
-      software for museums and collectors. I build AI features, like an LLM pipeline
-      that maps a customer's spreadsheet for them, and the billing and checkout code
-      that has to be right every time.
+      I'm a full stack software engineer at CatalogIt, which makes collection
+      management software for museums and collectors. I take product features from
+      idea to production, lately with a lot of AI in them.
     </p>
 
     {posts.length > 0 && (
@@ -33,7 +33,7 @@ const formatDate = (date: Date) =>
         <div class="writing-list">
           {posts.map((post) => (
             <a href={`/writing/${post.id}`} class="writing-row">
-              <span class="writing-title">{post.data.title}</span>
+              <span class="writing-title" set:html={keepHyphenatedWords(post.data.title)} />
               <span class="writing-year">{formatDate(post.data.date)}</span>
             </a>
           ))}
