@@ -1,0 +1,33 @@
+---
+// src/pages/404.astro
+import Base from '../layouts/Base.astro';
+import Masthead from '../components/Masthead.astro';
+---
+
+<Base title="Page not found">
+  <div class="col">
+    <Masthead />
+
+    <h1 class="title">Page not found</h1>
+    <p class="body">
+      There's nothing at this address. Try the <a href="/">home page</a> or the
+      <a href="/work">list of projects</a>.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(36px, 5.4vw, 50px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .body { max-width: 60ch; }
+  .body a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>
