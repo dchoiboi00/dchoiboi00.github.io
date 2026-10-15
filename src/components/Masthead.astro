@@ -13,8 +13,8 @@ const currentPath = Astro.url.pathname;
     <a href={backTo.href} class="masthead-back">← {backTo.label}</a>
   )}
   <img src="/photo.jpg" alt="Daniel Choi" class="masthead-photo" />
-  <div class="masthead-name">Daniel Choi</div>
-  <div class="masthead-role">Software Engineer &nbsp;·&nbsp; Los Angeles</div>
+  <a href="/" class="masthead-name" aria-current={currentPath === '/' ? 'page' : undefined}>Daniel Choi</a>
+  <div class="masthead-role">Full-stack engineer &nbsp;·&nbsp; Los Angeles</div>
   <nav class="masthead-nav">
     <a href="/work" class={currentPath.startsWith('/work') ? 'active' : ''}>Work</a>
     <a href="/writing" class={currentPath.startsWith('/writing') ? 'active' : ''}>Writing</a>
@@ -50,6 +50,7 @@ const currentPath = Astro.url.pathname;
     display: block;
   }
   .masthead-name {
+    display: inline-block;
     font-family: var(--serif);
     font-size: 44px;
     font-weight: 500;

@@ -14,18 +14,18 @@ import Masthead from '../components/Masthead.astro';
       </div>
       <div>
         <h1>About</h1>
-        <p class="dek">Daniel Choi · Los Angeles · Full-stack engineer, currently at CatalogIt.</p>
       </div>
     </div>
 
     <div class="prose about-body">
       <p>
-        I'm an engineer focused on turning AI into shipped products —
-        evals, prompt design, error handling, the parts that don't fit in demo videos.
-        Currently building LLM-powered features for collection management software at CatalogIt.
+        I'm a full-stack engineer at CatalogIt, which makes collection management software
+        for museums, galleries, and collectors. I build AI features, like the LLM pipeline
+        behind our CSV importer, and the billing and checkout code that has to be right every time.
       </p>
       <p>
-        Outside of work, I'm usually shipping something on the weekend, and I read more than I write
+        I care most about the parts of a product that don't fit in a demo: error handling,
+        fallbacks, and making sure the numbers match. Outside of work, I read more than I write
         (working on it).
       </p>
     </div>
@@ -38,10 +38,6 @@ import Masthead from '../components/Masthead.astro';
         </div>
       </div>
 
-      <div class="strip">
-        <p class="strip-label">Currently</p>
-        <p class="strip-content">Shipping AI features at CatalogIt.</p>
-      </div>
     </div>
   </div>
 </Base>
@@ -76,13 +72,6 @@ import Masthead from '../components/Masthead.astro';
     margin-bottom: 10px;
     color: var(--ink);
   }
-  .about-head .dek {
-    font-family: var(--serif-dek);
-    font-style: italic;
-    font-size: 19px;
-    line-height: 1.5;
-    color: var(--muted);
-  }
   .about-body { margin-bottom: 56px; }
   .about-body p { margin-bottom: 1.4em; max-width: 66ch; }
   .strips { border-top: 4px double var(--rule); margin-bottom: 16px; }
@@ -102,12 +91,6 @@ import Masthead from '../components/Masthead.astro';
   }
   .strip-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
   .strip-links .dot { color: var(--faint); margin: 0 10px; }
-  .strip-content {
-    font-size: 16px;
-    color: #4a4033;
-    line-height: 1.6;
-    max-width: 62ch;
-  }
 
   @media (max-width: 480px) {
     .about-head { flex-direction: column; }

@@ -5,35 +5,31 @@ import Masthead from '../components/Masthead.astro';
 
 const projects = [
   {
-    name: 'CatalogIt auto-mapper',
-    description: 'Production LLM pipeline that parses incoming CSVs and maps columns to the appropriate fields in a collection management CMS. Served real customers.',
-    tags: '2024–PRESENT · TYPESCRIPT · CLOSED-SOURCE',
+    name: 'CSV auto-mapper',
+    description: "LLM pipeline that maps the columns of a customer's spreadsheet to the right fields in CatalogIt, so museums can import decades of records without a setup call. It maps a full CSV in 15–30 seconds and has been in production since 2024.",
+    tags: 'TYPESCRIPT · LLMS · EMBEDDINGS · REDIS',
     links: [{ label: 'Case study', href: '/writing/csv-schema-mapper-at-catalogit' }],
-    status: 'CLOSED-SOURCE',
-    image: '/work/catalogit-mapper.jpg',
+    image: '/work/csv-mapper-diagram.svg',
   },
   {
-    name: 'CatalogIt capacity enforcement',
-    description: 'Background job that detects accounts over their plan limits and drives a 15-day enforcement funnel \u2014 email drip, in-app notices, and an automatic freeze \u2014 with zero false positives. Turned 600 unenforced accounts into 15% MRR growth.',
-    tags: 'TYPESCRIPT · CLOSED-SOURCE',
+    name: 'Plan limit enforcement',
+    description: 'Daily job that finds accounts over their plan limits and moves them through a 15-day countdown: in-app notices, an email drip, then a read-only freeze that lifts the moment they pay. Turned 600 unenforced accounts into 15% MRR growth in the first month.',
+    tags: 'TYPESCRIPT · SCHEDULED JOBS',
     links: [{ label: 'Case study', href: '/writing/account-capacity-enforcement-at-catalogit' }],
-    status: 'CLOSED-SOURCE',
     image: '/work/capacity-enforcement-diagram.svg',
   },
   {
-    name: 'CatalogIt billing migration',
-    description: 'Moved 3,000 accounts ($800K ARR) to a new flexible billing model with zero downtime: phased webhook versioning, a dry-run-first backfill with a verifier, and a staged rollout with instant rollback.',
-    tags: 'TYPESCRIPT · CLOSED-SOURCE',
+    name: 'Billing migration',
+    description: 'Moved 3,000 paying accounts ($800K ARR) from per-user to per-account Stripe billing with zero downtime, using phased webhook versioning, a dry-run-first backfill checked by a verifier, and a staged rollout with instant rollback.',
+    tags: 'TYPESCRIPT · STRIPE',
     links: [{ label: 'Case study', href: '/writing/zero-downtime-billing-migration-at-catalogit' }],
-    status: 'CLOSED-SOURCE',
     image: '/work/billing-migration-diagram.svg',
   },
   {
-    name: 'CatalogIt Adjust Plan wizard',
-    description: 'Rebuilt the Adjust Plan checkout flow as an XState state machine \u2014 four steps, three async services \u2014 replacing boolean soup with an explicit, testable statechart.',
-    tags: 'TYPESCRIPT · XSTATE · CLOSED-SOURCE',
+    name: 'Adjust Plan wizard',
+    description: 'Rebuilt the plan-change checkout as an XState state machine with four steps and three async services, replacing a pile of booleans with an explicit, testable statechart.',
+    tags: 'TYPESCRIPT · REACT · XSTATE · STRIPE',
     links: [{ label: 'Case study', href: '/writing/adjust-plan-wizard-xstate-at-catalogit' }],
-    status: 'CLOSED-SOURCE',
     image: '/work/xstate-wizard-diagram.svg',
   },
 ] as const;
@@ -44,7 +40,7 @@ const projects = [
     <Masthead />
 
     <h1 class="page-title">Work</h1>
-    <p class="page-dek">Selected projects, mostly around production AI.</p>
+    <p class="page-dek">Selected projects from my work at CatalogIt. The code is closed source, so each one links to a write-up.</p>
 
     <div class="project-list">
       {projects.map((p) => (

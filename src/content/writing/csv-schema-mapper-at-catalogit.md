@@ -1,20 +1,20 @@
 ---
-title: Building a CSV-to-schema mapper with LLMs at CatalogIt
+title: Building a CSV-to-schema mapper with LLMs
 dek: How we turned a fragile prompt into a reliable ingest pipeline serving real customers.
 date: 2026-04-27
 type: CASE STUDY
 readTime: 6 min
 ---
 
-![CatalogIt CSV import mapping interface](/work/catalogit-mapper.jpg)
+![How the CSV auto-mapper works: an LLM profiles each column once, embedding search scores it against every CatalogIt field, and past imports win when they're confident](/work/csv-mapper-diagram.svg)
 
 Most CatalogIt customers arrive with a spreadsheet.
 Sometimes well-formatted, often not.
-Our job is to land that data into the right places in the system — and we wanted to do it without a 30-minute onboarding call.
+Our job is to land that data into the right places in the system, and we wanted to do it without a 30-minute onboarding call.
 
 ## The problem
 
-Museums, galleries, and private collectors arrive at CatalogIt with decades of records in spreadsheets. Column headers are inconsistent across institutions — *"credit"* might mean credit-line on one sheet and donor on the next. Some columns hold structured values (artists, materials) that need to be split into linked records; others are free text. CatalogIt's schema has hundreds of properties across object types, and asking a curator to map every column by hand was the slowest part of onboarding.
+Museums, galleries, and private collectors arrive at CatalogIt with decades of records in spreadsheets. Column headers are inconsistent across institutions: *"credit"* might mean credit-line on one sheet and donor on the next. Some columns hold structured values (artists, materials) that need to be split into linked records; others are free text. CatalogIt's schema has hundreds of properties across object types, and asking a curator to map every column by hand was the slowest part of onboarding.
 
 ## The naive approach
 
@@ -28,17 +28,17 @@ The deeper issue: we were asking the model to do retrieval, classification, and 
 
 We split the problem in two.
 
-**Step 1 — profile each column with the LLM, once.** For each CSV column, we ask the model to produce a structured profile: the dominant data types, format patterns, semantic descriptors, and any other characteristics worth noting. This is a small, well-scoped task the model is good at.
+**Step 1: profile each column with the LLM, once.** For each CSV column, we ask the model to produce a structured profile: the dominant data types, format patterns, semantic descriptors, and any other characteristics worth noting. This is a small, well-scoped task the model is good at.
 
-**Step 2 — match profiles to schema properties via embedding similarity.** Every schema property has pre-computed embeddings (cached in Redis with a long TTL). For each column, we build *three* embedding queries from the profile:
+**Step 2: match profiles to schema properties via embedding similarity.** Every schema property has pre-computed embeddings (cached in Redis with a long TTL). For each column, we build *three* embedding queries from the profile:
 
-- a **header** query — what the column is called and what it claims to be,
-- a **value** query — what the data actually looks like,
-- a **context** query — surrounding signals like neighboring columns and object type.
+- a **header** query: what the column is called and what it claims to be,
+- a **value** query: what the data actually looks like,
+- a **context** query: surrounding signals like neighboring columns and object type.
 
 Each query is scored against the schema-property embeddings via cosine similarity, then combined with weights (header dominates, context refines, value disambiguates). A type-compatibility multiplier softly penalizes matches that don't make sense (a date column shouldn't map to a URL field). A structural-constraint filter removes candidates that can't validly hold the column's shape.
 
-Three orthogonal signals turn out to be much more robust than one giant prompt — when the header is ambiguous, the values disambiguate; when the values are sparse, the context carries the column.
+Three orthogonal signals turn out to be much more robust than one giant prompt. When the header is ambiguous, the values disambiguate; when the values are sparse, the context carries the column.
 
 ## Layering with historical mappings
 
@@ -54,4 +54,4 @@ This means the system gets quietly better as more customers import data, without
 
 The mapper runs in the import flow for both individual objects and bulk profile imports, typically resolving a full CSV in 15–30 seconds. The UI shows progressive status messages so curators know something is happening on longer files. If the AI step fails or times out, the import gracefully falls back to historical-only mappings rather than blocking the user. Every run writes a structured log for debugging the long tail of weird spreadsheets.
 
-The biggest unlock wasn't the model — it was giving the model a smaller, better-shaped job and letting deterministic systems (embeddings, history, type rules) handle everything else.
+The biggest unlock was giving the model a smaller, better-shaped job and letting deterministic systems (embeddings, history, type rules) handle everything else.
