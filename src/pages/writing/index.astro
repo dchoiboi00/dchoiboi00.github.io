@@ -3,6 +3,7 @@
 import Base from '../../layouts/Base.astro';
 import Masthead from '../../components/Masthead.astro';
 import { getCollection } from 'astro:content';
+import { keepHyphenatedWords } from '../../lib/keep-hyphenated-words.mjs';
 
 const posts = (await getCollection('writing'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -28,8 +29,8 @@ const formatDate = (date: Date) =>
             {titleCase(post.data.type)} &nbsp;·&nbsp; {formatDate(post.data.date)}
             {post.data.readTime && <>&nbsp;·&nbsp; {post.data.readTime}</>}
           </p>
-          <h2 class="title"><a href={`/writing/${post.id}`}>{post.data.title}</a></h2>
-          {post.data.dek && <p class="dek">{post.data.dek}</p>}
+          <h2 class="title"><a href={`/writing/${post.id}`} set:html={keepHyphenatedWords(post.data.title)} /></h2>
+          {post.data.dek && <p class="dek" set:html={keepHyphenatedWords(post.data.dek)} />}
         </div>
       ))}
     </div>
