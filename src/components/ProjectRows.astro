@@ -1,0 +1,42 @@
+---
+// src/components/ProjectRows.astro
+import type { Project } from '../data/projects.ts';
+import { keepHyphenatedWords } from '../lib/keep-hyphenated-words.mjs';
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<ul class="rows">
+  {projects.map((project) => {
+    const href = `/projects/${project.slug}`;
+    return (
+      <li>
+        <a href={href} class="thumb" aria-hidden="true" tabindex="-1">
+          <img src={project.diagram} alt="" width={project.diagramWidth} height={project.diagramHeight} loading="lazy" />
+        </a>
+        <div>
+          <h3><a href={href} set:html={keepHyphenatedWords(project.name)} /></h3>
+          <p class="summary" set:html={keepHyphenatedWords(project.summary)} />
+          <p class="impact" set:html={keepHyphenatedWords(project.result)} />
+        </div>
+      </li>
+    );
+  })}
+</ul>
+
+<style>
+  .rows { list-style: none; margin: 44px 0 0; padding: 0; display: grid; gap: 44px; }
+  li { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 28px; align-items: start; }
+  .thumb { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+  h3 { margin: 0 0 8px; font-size: 24px; font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+  .summary { margin: 0 0 10px; font-family: var(--text); font-size: 17px; line-height: 1.6; }
+  .impact { margin: 0; font-size: 15.5px; font-weight: 600; }
+
+  @media (max-width: 640px) {
+    li { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  }
+</style>

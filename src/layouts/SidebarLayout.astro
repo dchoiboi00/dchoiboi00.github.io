@@ -1,0 +1,42 @@
+---
+// src/layouts/SidebarLayout.astro
+import Base from './Base.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  links: { href: string; label: string; current?: boolean }[];
+  trackSections?: boolean;
+  nameIsHeading?: boolean;
+}
+
+const { title, description, links, trackSections, nameIsHeading } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <div class="shell">
+    <Sidebar links={links} trackSections={trackSections} nameIsHeading={nameIsHeading} />
+    <main class="main">
+      <slot />
+      <p class="site-foot">Daniel Choi, 2026</p>
+    </main>
+  </div>
+</Base>
+
+<style>
+  .shell {
+    max-width: 1264px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 88px);
+    padding-inline: clamp(16px, 4vw, 48px);
+  }
+  .main { padding-block: 56px 80px; min-width: 0; max-width: 760px; }
+
+  @media (max-width: 960px) {
+    .shell { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .main { padding-top: 32px; }
+  }
+</style>

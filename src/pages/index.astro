@@ -1,114 +1,45 @@
 ---
 // src/pages/index.astro
-import Base from '../layouts/Base.astro';
-import Masthead from '../components/Masthead.astro';
-import { getCollection } from 'astro:content';
-import { keepHyphenatedWords } from '../lib/keep-hyphenated-words.mjs';
+import SidebarLayout from '../layouts/SidebarLayout.astro';
+import ProjectFeature from '../components/ProjectFeature.astro';
+import ProjectRows from '../components/ProjectRows.astro';
+import { newestFirst, projects } from '../data/projects.ts';
 
-const posts = (await getCollection('writing'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
-
-const formatDate = (date: Date) =>
-  date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+const featured = projects.filter((p) => p.featured);
+const others = projects.filter((p) => !p.featured).sort(newestFirst);
 ---
 
-<Base>
-  <div class="col">
-    <Masthead />
+<SidebarLayout
+  links={[
+    { href: '#projects', label: 'Projects', current: true },
+    { href: '#about', label: 'About' },
+  ]}
+  trackSections
+  nameIsHeading
+>
+  <section id="projects">
+    <h2>Featured projects</h2>
+    {featured.map((project) => <ProjectFeature project={project} />)}
+    <ProjectRows projects={others} />
+  </section>
 
-    <section class="hero">
-      <h1>Engineer turning AI<br /><em>into shipped products.</em></h1>
-    </section>
-
-    <p class="intro">
-      I'm a full stack software engineer at CatalogIt, which makes collection
-      management software for museums and collectors. I take product features from
-      idea to production, lately with a lot of AI in them.
+  <section id="about" class="about">
+    <h2>About</h2>
+    <p>
+      I'm a full stack software engineer at CatalogIt, which makes collection management
+      software for museums, galleries, and collectors. I take product features from idea to
+      production, lately with a lot of AI in them, like the LLM pipeline behind our CSV importer.
     </p>
-
-    {posts.length > 0 && (
-      <section>
-        <div class="kicker">Recent Writing</div>
-        <div class="writing-list">
-          {posts.map((post) => (
-            <a href={`/writing/${post.id}`} class="writing-row">
-              <span class="writing-title" set:html={keepHyphenatedWords(post.data.title)} />
-              <span class="writing-year">{formatDate(post.data.date)}</span>
-            </a>
-          ))}
-        </div>
-        <a href="/writing" class="more">All writing →</a>
-      </section>
-    )}
-  </div>
-</Base>
+    <p>
+      I care most about the parts of a product that don't fit in a demo: error handling,
+      fallbacks, and making sure the numbers match. Outside of work, I read more than I write
+      (working on it).
+    </p>
+  </section>
+</SidebarLayout>
 
 <style>
-  .hero { margin-bottom: 30px; }
-  .hero h1 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(40px, 6.4vw, 62px);
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-    text-wrap: balance;
-    color: var(--ink);
-  }
-  .hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
-  .intro {
-    font-family: var(--serif-dek);
-    font-size: clamp(19px, 2.4vw, 23px);
-    line-height: 1.55;
-    color: #4a4033;
-    max-width: 60ch;
-    margin-bottom: 72px;
-  }
-  .kicker {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: 12.5px;
-    font-weight: 600;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-  .kicker::before,
-  .kicker::after { content: ""; height: 1px; background: var(--rule); flex: 1; }
-  .writing-list { border-top: 1px solid var(--rule); margin-bottom: 16px; }
-  .writing-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 20px;
-    padding: 18px 0;
-    border-bottom: 1px solid var(--rule);
-    text-decoration: none;
-    color: var(--ink);
-  }
-  .writing-title {
-    font-family: var(--serif);
-    font-size: 21px;
-    font-weight: 500;
-    line-height: 1.35;
-  }
-  .writing-row:hover .writing-title { color: var(--accent); }
-  .writing-year {
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    color: var(--faint);
-    flex-shrink: 0;
-  }
-  .more {
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 14px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .more:hover { text-decoration: underline; text-underline-offset: 4px; }
+  h2 { font-size: 22px; font-weight: 700; margin: 0 0 20px; line-height: 1.25; }
+  .about { margin-top: 80px; }
+  .about p { margin: 0 0 16px; max-width: 62ch; font-family: var(--text); line-height: 1.65; }
 </style>
