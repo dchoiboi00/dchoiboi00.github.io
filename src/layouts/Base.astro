@@ -3,14 +3,20 @@
 import '../styles/global.css';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
+  ogType?: 'website' | 'article';
 }
 
 const {
   title,
-  description = 'Engineer turning AI into shipped products.',
+  description = 'Full-stack engineer at CatalogIt. I build AI features and the billing and checkout code that has to be right every time.',
+  ogType = 'website',
 } = Astro.props;
+
+const pageTitle = title ? `${title} — Daniel Choi` : 'Daniel Choi';
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL('/og.png', Astro.site);
 ---
 <!doctype html>
 <html lang="en">
@@ -18,8 +24,21 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
-    <title>{title} — Daniel Choi</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Daniel Choi" />
+    <meta property="og:title" content={title ?? 'Daniel Choi'} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Daniel Choi, full-stack engineer at CatalogIt" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

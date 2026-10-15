@@ -20,7 +20,7 @@ const formatDate = (d: Date) =>
 const metaParts = [titleCase(type), formatDate(date), readTime].filter(Boolean).join(' · ');
 ---
 
-<Base title={title} description={dek}>
+<Base title={title} description={dek} ogType="article">
   <div class="col">
     <Masthead backTo={{ href: '/writing', label: 'Writing' }} />
 
