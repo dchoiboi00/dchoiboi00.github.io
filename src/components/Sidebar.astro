@@ -1,0 +1,104 @@
+---
+// src/components/Sidebar.astro
+interface Props {
+  links: { href: string; label: string; current?: boolean }[];
+  /** Mark the link for the section in view as the reader scrolls (home page). */
+  trackSections?: boolean;
+  /** Render the name as the page's h1 (home page). */
+  nameIsHeading?: boolean;
+}
+
+const { links, trackSections = false, nameIsHeading = false } = Astro.props;
+const Name = nameIsHeading ? 'h1' : 'p';
+---
+
+<aside class="side">
+  <img src="/photo.jpg" alt="Portrait of Daniel Choi" width="80" height="80" />
+  <Name class="name"><a href="/">Daniel Choi</a></Name>
+  <p class="role">
+    <span>Full Stack Software Engineer at CatalogIt</span>
+    <span>Los Angeles</span>
+  </p>
+  <p class="bio">I take product features from idea to production, lately with a lot of AI in them.</p>
+  <nav aria-label="Sections" data-track-sections={trackSections ? '' : undefined}>
+    {links.map((link) => (
+      <a href={link.href} aria-current={link.current ? (trackSections ? 'true' : 'page') : undefined}>
+        {link.label}
+      </a>
+    ))}
+  </nav>
+  <dl class="reach">
+    <div><dt>GitHub</dt><dd><a href="https://github.com/dchoiboi00">dchoiboi00</a></dd></div>
+    <div><dt>LinkedIn</dt><dd><a href="https://linkedin.com/in/danielyoochoi">danielyoochoi</a></dd></div>
+    <div><dt>Email</dt><dd>dchoiboi00@gmail.com</dd></div>
+  </dl>
+</aside>
+
+{trackSections && (
+  <script is:inline type="module">
+    // Mark the sidebar link for the section in view: the last section whose top
+    // has reached 35% of the way down the screen. At the very bottom of the page
+    // it is always the last section, since a short last section may never get
+    // that far up. A module script runs after the page is parsed, so the
+    // sections exist by the time this runs.
+    (() => {
+      const nav = document.querySelector('[data-track-sections]');
+      const items = [...nav.querySelectorAll('a[href^="#"]')]
+        .map((link) => ({ link, section: document.querySelector(link.getAttribute('href')) }))
+        .filter((item) => item.section);
+      if (items.length === 0) return;
+
+      const update = () => {
+        const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+        let current = items[0];
+        if (atBottom) current = items[items.length - 1];
+        else for (const item of items) if (item.section.getBoundingClientRect().top <= innerHeight * 0.35) current = item;
+
+        for (const item of items) {
+          if (item === current) item.link.setAttribute('aria-current', 'true');
+          else item.link.removeAttribute('aria-current');
+        }
+      };
+
+      let queued = false;
+      const queueUpdate = () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          update();
+        });
+      };
+
+      addEventListener('scroll', queueUpdate, { passive: true });
+      addEventListener('resize', queueUpdate);
+      update();
+    })();
+  </script>
+)}
+
+<style>
+  .side {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    align-self: start;
+    padding-block: 56px 32px;
+  }
+  img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-bottom: 18px; }
+  .name { margin: 0; font-size: 30px; font-weight: 800; line-height: 1.1; letter-spacing: -0.015em; }
+  .name a, .name a:visited { color: var(--ink); text-decoration: none; }
+  .role { margin: 6px 0 16px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.45; }
+  .role span { display: block; white-space: nowrap; }
+  .bio { margin: 0 0 28px; font-family: var(--text); font-size: 17px; line-height: 1.6; }
+  nav { display: grid; gap: 6px; margin-bottom: 28px; font-size: 18px; font-weight: 500; }
+  nav a[aria-current] { color: var(--ink); font-weight: 700; text-decoration: none; }
+  .reach { display: grid; gap: 4px; margin: 0; font-size: 15.5px; }
+  .reach div { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 8px; }
+  .reach dt { color: var(--ink-soft); }
+  .reach dd { margin: 0; }
+
+  @media (max-width: 960px) {
+    .side { position: static; padding-bottom: 8px; }
+    nav { grid-auto-flow: column; justify-content: start; gap: 20px; }
+  }
+</style>

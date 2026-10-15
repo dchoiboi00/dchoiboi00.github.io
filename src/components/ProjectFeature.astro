@@ -1,0 +1,38 @@
+---
+// src/components/ProjectFeature.astro
+import { getEntry } from 'astro:content';
+import type { Project } from '../data/projects.ts';
+import { keepHyphenatedWords } from '../lib/keep-hyphenated-words.mjs';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const href = `/projects/${project.slug}`;
+const post = await getEntry('writing', project.slug);
+const readTime = post?.data.readTime;
+---
+
+<article class="feature">
+  <a href={href} class="figure" aria-hidden="true" tabindex="-1">
+    <img src={project.diagram} alt="" width={project.diagramWidth} height={project.diagramHeight} />
+  </a>
+  <div class="text">
+    <h3><a href={href} set:html={keepHyphenatedWords(project.name)} /></h3>
+    <p class="summary" set:html={keepHyphenatedWords(project.summary)} />
+    <p class="impact" set:html={keepHyphenatedWords(project.result)} />
+    <a href={href} class="read">Read the case study{readTime && ` (${readTime})`}</a>
+  </div>
+</article>
+
+<style>
+  .feature { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .figure { display: block; border-bottom: 1px solid var(--line); }
+  .figure img { width: 100%; }
+  .text { padding: clamp(20px, 3vw, 36px); }
+  h3 { margin: 0 0 10px; font-size: clamp(28px, 3.4vw, 40px); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; }
+  .summary { margin: 0 0 16px; max-width: 62ch; font-family: var(--text); font-size: 18px; line-height: 1.6; }
+  .impact { margin: 0 0 18px; font-size: 16.5px; font-weight: 600; }
+  .read { font-weight: 700; }
+</style>
