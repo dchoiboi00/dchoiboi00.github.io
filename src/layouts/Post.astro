@@ -2,6 +2,7 @@
 // src/layouts/Post.astro
 import Base from './Base.astro';
 import Masthead from '../components/Masthead.astro';
+import { keepHyphenatedWords } from '../lib/keep-hyphenated-words.mjs';
 
 interface Props {
   title: string;
@@ -26,8 +27,8 @@ const metaParts = [titleCase(type), formatDate(date), readTime].filter(Boolean).
 
     <article>
       <p class="kicker">{metaParts}</p>
-      <h1 class="post-title">{title}</h1>
-      {dek && <p class="post-dek">{dek}</p>}
+      <h1 class="post-title" set:html={keepHyphenatedWords(title)} />
+      {dek && <p class="post-dek" set:html={keepHyphenatedWords(dek)} />}
 
       <div class="prose">
         <slot />

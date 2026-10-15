@@ -59,6 +59,8 @@ a:hover { color: var(--accent); }
   padding: 0 var(--col-pad);
 }
 
+.nowrap { white-space: nowrap; }
+
 /* ── Hairline rule ── */
 .rule { border: none; border-top: 1px solid var(--rule); }
 
