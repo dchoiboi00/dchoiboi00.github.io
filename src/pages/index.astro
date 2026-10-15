@@ -8,10 +8,11 @@ const posts = (await getCollection('writing'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-const formatYear = (date: Date) => date.getFullYear().toString();
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 ---
 
-<Base title="Daniel Choi">
+<Base>
   <div class="col">
     <Masthead />
 
@@ -20,9 +21,10 @@ const formatYear = (date: Date) => date.getFullYear().toString();
     </section>
 
     <p class="intro">
-      I'm a full-stack engineer at CatalogIt, where I build LLM-powered features
-      for collection management software. I'm most interested in the gap between
-      AI demos and reliable, shipped products.
+      I'm a full-stack engineer at CatalogIt, which makes collection management
+      software for museums and collectors. I build AI features, like an LLM pipeline
+      that maps a customer's spreadsheet for them, and the billing and checkout code
+      that has to be right every time.
     </p>
 
     {posts.length > 0 && (
@@ -32,7 +34,7 @@ const formatYear = (date: Date) => date.getFullYear().toString();
           {posts.map((post) => (
             <a href={`/writing/${post.id}`} class="writing-row">
               <span class="writing-title">{post.data.title}</span>
-              <span class="writing-year">{formatYear(post.data.date)}</span>
+              <span class="writing-year">{formatDate(post.data.date)}</span>
             </a>
           ))}
         </div>
