@@ -14,7 +14,10 @@ const currentPath = Astro.url.pathname;
   )}
   <img src="/photo.jpg" alt="Daniel Choi" class="masthead-photo" />
   <a href="/" class="masthead-name" aria-current={currentPath === '/' ? 'page' : undefined}>Daniel Choi</a>
-  <div class="masthead-role">Full-stack engineer &nbsp;·&nbsp; Los Angeles</div>
+  <div class="masthead-role">
+    <span>Full Stack Software Engineer at CatalogIt</span>
+    <span>Los Angeles</span>
+  </div>
   <nav class="masthead-nav">
     <a href="/work" class={currentPath.startsWith('/work') ? 'active' : ''}>Work</a>
     <a href="/writing" class={currentPath.startsWith('/writing') ? 'active' : ''}>Writing</a>
@@ -59,6 +62,8 @@ const currentPath = Astro.url.pathname;
     color: var(--ink);
   }
   .masthead-role {
+    display: grid;
+    gap: 4px;
     margin-top: 10px;
     font-size: 13px;
     letter-spacing: 0.32em;
@@ -80,6 +85,6 @@ const currentPath = Astro.url.pathname;
     .masthead { padding: 40px 0 32px; margin-bottom: 48px; }
     .masthead-photo { width: 88px; height: 88px; }
     .masthead-name { font-size: 34px; }
-    .masthead-role { font-size: 11px; letter-spacing: 0.22em; }
+    .masthead-role { font-size: 10.5px; letter-spacing: 0.12em; }
   }
 </style>

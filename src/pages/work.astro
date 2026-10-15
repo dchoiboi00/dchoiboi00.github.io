@@ -2,11 +2,13 @@
 // src/pages/work.astro
 import Base from '../layouts/Base.astro';
 import Masthead from '../components/Masthead.astro';
+import { keepHyphenatedWords } from '../lib/keep-hyphenated-words.mjs';
 
 const projects = [
   {
     name: 'CSV auto-mapper',
-    description: "LLM pipeline that maps the columns of a customer's spreadsheet to the right fields in CatalogIt, so museums can import decades of records without a setup call. It maps a full CSV in 15–30 seconds and has been in production since 2024.",
+    description: "LLM pipeline that maps the columns of a customer's spreadsheet to the right fields in CatalogIt, so museums can import decades of records without a setup call. It maps a full CSV in 15–30 seconds.",
+    period: 'Aug 2025 – Mar 2026',
     tags: 'TYPESCRIPT · LLMS · EMBEDDINGS · REDIS',
     links: [{ label: 'Case study', href: '/writing/csv-schema-mapper-at-catalogit' }],
     image: '/work/csv-mapper-diagram.svg',
@@ -14,6 +16,7 @@ const projects = [
   {
     name: 'Plan limit enforcement',
     description: 'Daily job that finds accounts over their plan limits and moves them through a 15-day countdown: in-app notices, an email drip, then a read-only freeze that lifts the moment they pay. Turned 600 unenforced accounts into 15% MRR growth in the first month.',
+    period: 'Sep – Oct 2026',
     tags: 'TYPESCRIPT · SCHEDULED JOBS',
     links: [{ label: 'Case study', href: '/writing/account-capacity-enforcement-at-catalogit' }],
     image: '/work/capacity-enforcement-diagram.svg',
@@ -21,6 +24,7 @@ const projects = [
   {
     name: 'Billing migration',
     description: 'Moved 3,000 paying accounts ($800K ARR) from per-user to per-account Stripe billing with zero downtime, using phased webhook versioning, a dry-run-first backfill checked by a verifier, and a staged rollout with instant rollback.',
+    period: 'Mar – Jun 2026',
     tags: 'TYPESCRIPT · STRIPE',
     links: [{ label: 'Case study', href: '/writing/zero-downtime-billing-migration-at-catalogit' }],
     image: '/work/billing-migration-diagram.svg',
@@ -28,6 +32,7 @@ const projects = [
   {
     name: 'Adjust Plan wizard',
     description: 'Rebuilt the plan-change checkout as an XState state machine with four steps and three async services, replacing a pile of booleans with an explicit, testable statechart.',
+    period: 'Jun 2026',
     tags: 'TYPESCRIPT · REACT · XSTATE · STRIPE',
     links: [{ label: 'Case study', href: '/writing/adjust-plan-wizard-xstate-at-catalogit' }],
     image: '/work/xstate-wizard-diagram.svg',
@@ -40,7 +45,7 @@ const projects = [
     <Masthead />
 
     <h1 class="page-title">Work</h1>
-    <p class="page-dek">Selected projects from my work at CatalogIt. The code is closed source, so each one links to a write-up.</p>
+    <p class="page-dek" set:html={keepHyphenatedWords('Selected projects from my work at CatalogIt. The code is closed source, so each one links to a write-up.')} />
 
     <div class="project-list">
       {projects.map((p) => (
@@ -48,15 +53,15 @@ const projects = [
           {p.image && <img src={p.image} alt={p.name} class="project-image" />}
           <div class="project-body">
             <div class="project-main">
-              <span class="project-name">{p.name}</span>
+              <span class="project-name" set:html={keepHyphenatedWords(p.name)} />
               <div class="project-links">
                 {p.links.map((l) => (
                   <a href={l.href} class="project-link">{l.label}</a>
                 ))}
               </div>
             </div>
-            <p class="project-description">{p.description}</p>
-            <p class="meta project-tags">{p.tags}</p>
+            <p class="project-description" set:html={keepHyphenatedWords(p.description)} />
+            <p class="meta project-tags">{p.period} · {p.tags}</p>
           </div>
         </div>
       ))}
