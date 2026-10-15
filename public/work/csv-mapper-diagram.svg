@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" font-family="'Avenir Next','Segoe UI',Verdana,sans-serif" role="img" aria-labelledby="title">
+  <title id="title">CSV auto-mapper: spreadsheet columns matched to CatalogIt schema fields</title>
+  <defs>
+    <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="1.6" fill="#c9bda3" opacity="0.45"/>
+    </pattern>
+    <clipPath id="frame">
+      <rect x="16" y="16" width="928" height="568"/>
+    </clipPath>
+  </defs>
+
+  <rect width="960" height="600" fill="#faf6ee"/>
+
+  <g clip-path="url(#frame)">
+    <ellipse cx="190" cy="290" rx="200" ry="230" fill="#e3ecf5" opacity="0.5"/>
+    <ellipse cx="480" cy="290" rx="120" ry="150" fill="#f5ead6" opacity="0.4"/>
+    <ellipse cx="770" cy="290" rx="200" ry="230" fill="#e4efe4" opacity="0.5"/>
+    <rect x="360" y="34" width="110" height="36" fill="url(#dots)"/>
+    <rect x="850" y="498" width="70" height="40" fill="url(#dots)"/>
+  </g>
+
+  <rect x="16" y="16" width="928" height="568" fill="none" stroke="#d8cfbc" stroke-width="1"/>
+
+  <text x="40" y="56" font-size="13" letter-spacing="3" fill="#8a7f68" font-weight="600">CSV AUTO-MAPPER</text>
+  <text x="920" y="56" text-anchor="end" font-size="14" font-style="italic" fill="#8a7f68" font-family="Georgia,'Times New Roman',serif">a full CSV mapped in 15&#8211;30 seconds</text>
+
+  <!-- CSV columns -->
+  <rect x="40" y="84" width="300" height="400" rx="10" fill="#ffffff" stroke="#d8cfbc" stroke-width="1.25"/>
+  <path d="M40,94 a10,10 0 0 1 10,-10 h280 a10,10 0 0 1 10,10 v22 h-300 z" fill="#2b3a55"/>
+  <text x="190" y="105" text-anchor="middle" font-size="13.5" letter-spacing="2" fill="#ffffff" font-weight="700">CSV COLUMNS</text>
+  <g stroke="#efe8da" stroke-width="1">
+    <line x1="52" y1="168" x2="328" y2="168"/>
+    <line x1="52" y1="212" x2="328" y2="212"/>
+    <line x1="52" y1="256" x2="328" y2="256"/>
+    <line x1="52" y1="300" x2="328" y2="300"/>
+    <line x1="52" y1="344" x2="328" y2="344"/>
+    <line x1="52" y1="388" x2="328" y2="388"/>
+    <line x1="52" y1="432" x2="328" y2="432"/>
+  </g>
+  <g font-size="13" fill="#ffffff" font-weight="700" text-anchor="middle">
+    <rect x="56" y="134" width="24" height="24" rx="6" fill="#7ba3c9"/><text x="68" y="151">A</text>
+    <rect x="56" y="178" width="24" height="24" rx="6" fill="#7ba05b"/><text x="68" y="195">B</text>
+    <rect x="56" y="222" width="24" height="24" rx="6" fill="#d9a441"/><text x="68" y="239">C</text>
+    <rect x="56" y="266" width="24" height="24" rx="6" fill="#7e6ba8"/><text x="68" y="283">D</text>
+    <rect x="56" y="310" width="24" height="24" rx="6" fill="#5b8a8a"/><text x="68" y="327">E</text>
+    <rect x="56" y="354" width="24" height="24" rx="6" fill="#d97f4a"/><text x="68" y="371">F</text>
+    <rect x="56" y="398" width="24" height="24" rx="6" fill="#c97b9a"/><text x="68" y="415">G</text>
+    <rect x="56" y="442" width="24" height="24" rx="6" fill="#9a9a9a"/><text x="68" y="459">H</text>
+  </g>
+  <g font-size="16.5" fill="#232b3e">
+    <text x="92" y="152">Object Name</text>
+    <text x="92" y="196">Artist</text>
+    <text x="92" y="240">Date</text>
+    <text x="92" y="284">Medium</text>
+    <text x="92" y="328">Dimensions</text>
+    <text x="92" y="372">Credit Line</text>
+    <text x="92" y="416">Location</text>
+    <text x="92" y="460">Notes</text>
+  </g>
+
+  <!-- Schema fields -->
+  <rect x="620" y="84" width="300" height="400" rx="10" fill="#ffffff" stroke="#d8cfbc" stroke-width="1.25"/>
+  <path d="M620,94 a10,10 0 0 1 10,-10 h280 a10,10 0 0 1 10,10 v22 h-300 z" fill="#2f4a3c"/>
+  <text x="770" y="105" text-anchor="middle" font-size="13.5" letter-spacing="2" fill="#ffffff" font-weight="700">SCHEMA FIELDS</text>
+  <g stroke="#efe8da" stroke-width="1">
+    <line x1="632" y1="168" x2="908" y2="168"/>
+    <line x1="632" y1="212" x2="908" y2="212"/>
+    <line x1="632" y1="256" x2="908" y2="256"/>
+    <line x1="632" y1="300" x2="908" y2="300"/>
+    <line x1="632" y1="344" x2="908" y2="344"/>
+    <line x1="632" y1="388" x2="908" y2="388"/>
+    <line x1="632" y1="432" x2="908" y2="432"/>
+  </g>
+  <g font-size="16.5" fill="#232b3e">
+    <text x="644" y="152">Title</text>
+    <text x="644" y="196">Description</text>
+    <text x="644" y="240">Creator</text>
+    <text x="644" y="284">Creation Date</text>
+    <text x="644" y="328">Materials</text>
+    <text x="644" y="372">Dimensions</text>
+    <text x="644" y="416">Credit Line</text>
+    <text x="644" y="460">Current Location</text>
+  </g>
+
+  <!-- Matches: each column to the field it maps to -->
+  <g fill="none" stroke-width="2.5" stroke-linecap="round">
+    <path d="M340,146 C480,146 480,146 620,146" stroke="#7ba3c9"/>
+    <path d="M340,190 C480,190 480,234 620,234" stroke="#7ba05b"/>
+    <path d="M340,234 C480,234 480,278 620,278" stroke="#d9a441"/>
+    <path d="M340,278 C480,278 480,322 620,322" stroke="#7e6ba8"/>
+    <path d="M340,322 C480,322 480,366 620,366" stroke="#5b8a8a"/>
+    <path d="M340,366 C480,366 480,410 620,410" stroke="#d97f4a"/>
+    <path d="M340,410 C480,410 480,454 620,454" stroke="#c97b9a"/>
+    <path d="M340,454 C480,454 480,190 620,190" stroke="#9a9a9a"/>
+  </g>
+  <g stroke="#ffffff" stroke-width="2">
+    <circle cx="340" cy="146" r="5.5" fill="#7ba3c9"/><circle cx="620" cy="146" r="5.5" fill="#7ba3c9"/>
+    <circle cx="340" cy="190" r="5.5" fill="#7ba05b"/><circle cx="620" cy="234" r="5.5" fill="#7ba05b"/>
+    <circle cx="340" cy="234" r="5.5" fill="#d9a441"/><circle cx="620" cy="278" r="5.5" fill="#d9a441"/>
+    <circle cx="340" cy="278" r="5.5" fill="#7e6ba8"/><circle cx="620" cy="322" r="5.5" fill="#7e6ba8"/>
+    <circle cx="340" cy="322" r="5.5" fill="#5b8a8a"/><circle cx="620" cy="366" r="5.5" fill="#5b8a8a"/>
+    <circle cx="340" cy="366" r="5.5" fill="#d97f4a"/><circle cx="620" cy="410" r="5.5" fill="#d97f4a"/>
+    <circle cx="340" cy="410" r="5.5" fill="#c97b9a"/><circle cx="620" cy="454" r="5.5" fill="#c97b9a"/>
+    <circle cx="340" cy="454" r="5.5" fill="#9a9a9a"/><circle cx="620" cy="190" r="5.5" fill="#9a9a9a"/>
+  </g>
+
+  <g font-size="14" font-style="italic" fill="#8a7f68" font-family="Georgia,'Times New Roman',serif" text-anchor="middle">
+    <text x="480" y="528">an LLM profiles each column once &#183; embeddings match the header, values, and context</text>
+    <text x="480" y="552">past imports win when they&#8217;re confident &#183; falls back to past mappings if the AI step fails</text>
+  </g>
+</svg>
