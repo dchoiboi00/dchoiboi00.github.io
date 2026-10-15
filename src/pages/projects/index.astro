@@ -1,0 +1,24 @@
+---
+// src/pages/projects/index.astro
+import SidebarLayout from '../../layouts/SidebarLayout.astro';
+import ProjectRows from '../../components/ProjectRows.astro';
+import { newestFirst, projects } from '../../data/projects.ts';
+import { keepHyphenatedWords } from '../../lib/keep-hyphenated-words.mjs';
+---
+
+<SidebarLayout
+  title="Projects"
+  links={[
+    { href: '/projects', label: 'Projects', current: true },
+    { href: '/#about', label: 'About' },
+  ]}
+>
+  <h1>Projects</h1>
+  <p class="dek" set:html={keepHyphenatedWords('Selected projects from my work at CatalogIt. The code is closed source, so each one links to a write-up.')} />
+  <ProjectRows projects={[...projects].sort(newestFirst)} />
+</SidebarLayout>
+
+<style>
+  h1 { margin: 0 0 8px; font-size: 34px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.1; }
+  .dek { margin: 0; max-width: 60ch; font-family: var(--text); color: var(--ink-soft); font-size: 18px; line-height: 1.6; }
+</style>

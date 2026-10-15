@@ -1,0 +1,67 @@
+---
+// src/layouts/CaseStudy.astro
+import type { CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import Facts from '../components/Facts.astro';
+import { type Project, projectWhen } from '../data/projects.ts';
+import { keepHyphenatedWords } from '../lib/keep-hyphenated-words.mjs';
+
+interface Props {
+  post: CollectionEntry<'writing'>['data'];
+  project: Project;
+}
+
+const { post, project } = Astro.props;
+const facts = [
+  { label: 'Result', value: project.result },
+  { label: 'Built with', value: project.builtWith.join(', ') },
+  { label: 'When', value: projectWhen(project) },
+  ...(post.readTime ? [{ label: 'Reading time', value: post.readTime }] : []),
+];
+---
+
+<Base title={post.title} description={post.dek} ogType="article">
+  <main>
+    <div class="reading-col">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Daniel Choi</a><span aria-hidden="true">/</span><a href="/projects">Projects</a><span aria-hidden="true">/</span><span set:html={keepHyphenatedWords(project.name)} />
+      </nav>
+      <h1 class="page-title" set:html={keepHyphenatedWords(post.title)} />
+      {post.dek && <p class="dek" set:html={keepHyphenatedWords(post.dek)} />}
+      <Facts items={facts} />
+    </div>
+
+    <figure class="wide">
+      <img src={project.diagram} alt={project.diagramAlt} width={project.diagramWidth} height={project.diagramHeight} />
+    </figure>
+
+    <div class="reading-col tail">
+      <article class="prose">
+        <slot />
+      </article>
+      <p class="site-foot">Daniel Choi, 2026</p>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .dek { margin: 0 0 24px; font-family: var(--text); font-size: 21px; color: var(--ink-soft); line-height: 1.5; }
+  .wide { max-width: 1040px; margin: 8px auto 36px; padding-inline: clamp(16px, 5vw, 32px); }
+  .tail { padding-bottom: 80px; }
+</style>
+
+<style is:global>
+  /* Markdown body. Global because the content comes in through <slot />. */
+  .prose { font-family: var(--text); font-size: 19px; line-height: 1.7; }
+  .prose p, .prose ul, .prose ol { margin: 0 0 1.1em; }
+  .prose ul, .prose ol { padding-left: 1.3em; }
+  .prose li { margin-bottom: 0.4em; }
+  .prose h2 { font-family: var(--grotesk); font-size: 24px; font-weight: 800; letter-spacing: -0.01em; margin: 40px 0 10px; }
+  .prose h3 { font-family: var(--grotesk); font-size: 20px; font-weight: 700; margin: 32px 0 8px; }
+  .prose strong { font-weight: 600; }
+  .prose code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; background: var(--surface); padding: 1px 5px; border-radius: 4px; }
+  .prose pre { background: var(--surface); border: 1px solid var(--line); padding: 16px 18px; border-radius: 6px; overflow-x: auto; font-size: 15px; line-height: 1.55; }
+  .prose pre code { background: none; padding: 0; font-size: inherit; }
+  .prose blockquote { margin: 0 0 1.1em; padding-left: 18px; border-left: 3px solid var(--rule); color: var(--ink-soft); }
+  .prose img { margin: 8px 0 32px; }
+</style>

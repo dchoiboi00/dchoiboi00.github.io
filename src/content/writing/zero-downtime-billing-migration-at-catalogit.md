@@ -6,8 +6,6 @@ type: CASE STUDY
 readTime: 7 min
 ---
 
-![The billing migration in four steps: run both webhook endpoints, cut over, backfill 1,535 accounts, and roll out in stages](/work/billing-migration-diagram.svg)
-
 CatalogIt billed per-user. We needed to bill per-account, with one subscription per institution covering all its staff, and do it across 3,000 paying accounts representing $800K in ARR without a minute of downtime or a single revenue discrepancy. This is how we sequenced it.
 
 ## The problem

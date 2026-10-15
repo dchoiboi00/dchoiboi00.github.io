@@ -6,8 +6,6 @@ type: CASE STUDY
 readTime: 6 min
 ---
 
-![Timeline of the 15-day plan limit countdown: a daily scan, in-app notices and emails, a freeze on day 15, and a restore when the customer pays](/work/capacity-enforcement-diagram.svg)
-
 Roughly 600 of CatalogIt's 25,000 accounts, about 2.5%, were sitting over their plan limits on records, users, and storage. Nobody was enforcing any of it. I noticed it while migrating our billing infrastructure, and I proposed we fix it with a countdown instead of a cliff.
 
 ## The problem
