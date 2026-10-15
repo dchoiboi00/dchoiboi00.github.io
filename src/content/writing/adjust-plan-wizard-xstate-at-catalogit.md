@@ -6,8 +6,6 @@ type: CASE STUDY
 readTime: 6 min
 ---
 
-![Statechart of the Adjust Plan wizard: adjust, preview, payment, committing, and success, with a guarded shortcut that skips payment](/work/xstate-wizard-diagram.svg)
-
 Changing a subscription plan sounds simple until you enumerate the cases: upgrade or downgrade, monthly or annual, and add-ons for users, storage, and API. Then add a prorated invoice preview before anything is charged, card entry only when there's actually something to pay, first-time purchases for accounts that don't even have a Stripe customer yet, and cancellation with a reason captured on the way out. At CatalogIt we built it as a four-step wizard driven by an XState state machine. Here's why.
 
 ## The problem with ad-hoc state
@@ -20,7 +18,13 @@ We'd already been bitten by this shape of bug elsewhere. So instead of boolean s
 
 `adjustPlanMachine` models the whole wizard as states and events:
 
-`adjust → preview.{loading, loaded, error} → payment.{idle, submitting} → committing → success`
+```text
+adjust
+→ preview.{loading, loaded, error}
+→ payment.{idle, submitting}
+→ committing
+→ success
+```
 
 The key decisions:
 
@@ -48,6 +52,6 @@ One detail I'm proud of: the change always commits on a single prorated invoice 
 
 ## What the statechart bought us
 
-The wizard shipped without a single "how did the UI get into this state" bug, which for a branching payment flow is the whole game. But the deeper win was developmental: because the machine was walkable with stubs from day one, design, product, and engineering could click through the real flow, including the edge cases, weeks before the backend was wired. The statechart became the shared language for the feature. When someone asked "what happens if the preview fails after the user already entered a card?", we pointed at the graph instead of arguing from memory.
+The wizard shipped without a single "how did the UI get into this state" bug, which for a branching payment flow is the whole game. But the deeper win was developmental: because the machine was walkable with stubs from day one, design, product, and engineering could click through the real flow, including the edge cases, before the backend was wired. The statechart became the shared language for the feature. When someone asked "what happens if the preview fails after the user already entered a card?", we pointed at the graph instead of arguing from memory.
 
 If your flow has more than two booleans controlling which step renders, draw the statechart. You'll find the states you forgot and, more importantly, you'll delete the ones that can't happen.

@@ -6,8 +6,6 @@ type: CASE STUDY
 readTime: 6 min
 ---
 
-![How the CSV auto-mapper works: an LLM profiles each column once, embedding search scores it against every CatalogIt field, and past imports win when they're confident](/work/csv-mapper-diagram.svg)
-
 Most CatalogIt customers arrive with a spreadsheet.
 Sometimes well-formatted, often not.
 Our job is to land that data into the right places in the system, and we wanted to do it without a 30-minute onboarding call.
